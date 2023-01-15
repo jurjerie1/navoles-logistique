@@ -1,0 +1,48 @@
+header{
+    height: 100%;
+    padding: 12px;
+
+}
+.iten-nav-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+    height: 100vh;
+}
+.iten-nav-bar a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 90px;
+    width: 100%;
+    /* padding: 12px; */
+    text-decoration: none;
+
+    
+    
+}
+.iten-nav-bar a:hover{
+    color: var(--colorOrange)
+}
+.iten-nav-bar a i{
+    margin-right: 10px;
+    font-size: 20px;
+}
+table{
+    padding: 12px;
+    margin-left: 5em;
+}
+.edit-from-admin input{
+    width: 300px;
+    
+}
+.contaire-edit{
+    padding: 12px;
+    box-shadow: 1px 1px 2px 2px black;
+    width: 100%;
+}

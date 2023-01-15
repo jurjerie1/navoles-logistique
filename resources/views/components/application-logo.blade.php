@@ -1,0 +1,1 @@
+<img src="{{asset('assets/img/logo-navoles-logistique.png')}}" alt="logo navoles logistique" height="200">
