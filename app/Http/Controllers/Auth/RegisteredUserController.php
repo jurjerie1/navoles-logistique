@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             // 'pseudo' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'entreprise' => ['required', 'string', 'max:255'],
             // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -65,7 +66,9 @@ class RegisteredUserController extends Controller
     }
 
     public function update(Request $request, $token){
-        dd("test");
+        dd($token);
+        dd($request);
+        $token = $request->token;
 
         $request->validate([
             'pseudo' => ['required', 'string', 'max:255'],
@@ -74,20 +77,27 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
 
         ]);
-        $user = User::where('create_compte', $token);
+        $user = User::where('create_compte', $token)->get();
+        // $user = User::find('create_compte',  $token);
         dd($user);
-
-        $user->update([
-            'pseudo' => $request->pseudo,
-            'pseudoD' => $request->pseudoD,
-            'tk' => $request->tk,
-            // 'pseudoD' => $request->,
+        // dd(Hash::make($request->password));
+        $password = Hash::make($request->password);
+        $user->password = $password;
+        $user->pseudo = $request->pseudo;
+        $user->pseudoD = $request->pseudoD;
+        $user->tk = $request->tk;
+        // $user->update([
+        //     'pseudo' => $request->pseudo,
+        //     'pseudoD' => $request->pseudoD,
+        //     'tk' => $request->tk,
+        //     // 'pseudoD' => $request->,
             
-            'password' => Hash::make($request->password),
-        ]);
-
+        //     'password' => $password,
+        // ]);
+        // $user->update($request->only('pseudo', 'pseudoD', 'tk', Hash::make($request->password)));
+        // dd($user);
         $user->save();
-        dd($request);
+        // dd($request);
 
         return view('login');
     }

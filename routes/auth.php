@@ -11,12 +11,10 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('register/{token}', [RegisteredUserController::class, 'create'])
-                ->name('register');
+    //Route::get('register/{token}', [RegisteredUserController::class, 'create'])
+                //->name('register');
 
-    Route::get('register/{token}/edit', [RegisteredUserController::class, 'edit'])->name('user.create');
-
-    Route::put('register/{$token}/update', [RegisteredUserController::class,"update"])->name('register.upload');
+    
 
     Route::post('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');

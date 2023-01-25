@@ -24,9 +24,11 @@ Route::middleware(['auth'])->group(function(){
 });
 // Route::get('register/{token}', [RegisteredUserController::class, 'create']);
 // Route::post('register/', [RegisteredUserController::class, 'store']);
+Route::get('register/{token}/edit', [RegisteredUserController::class, 'edit'])->name('user.create');
+// Route::match(array('GET','POST'),'/register/{token}/edit', [RegisteredUserController::class, 'edit'])->name('user.create');
+// Route::match(array('GET','POST'),'login:', 'AuthController@login');
+Route::put('register/{token}/update', [RegisteredUserController::class,"update"])->name('register.upload');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';

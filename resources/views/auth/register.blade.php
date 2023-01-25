@@ -82,6 +82,7 @@
                                 type="password"
                                 name="password_confirmation" required />
             </div>
+            <input type="hidden" name="token" value="{{ $us->create_compte }}">
 
             <div class="d-flex flex-center justify-content-center col-12">
                 <x-primary-button class="mt-12">
