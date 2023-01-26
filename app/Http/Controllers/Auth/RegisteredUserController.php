@@ -60,45 +60,36 @@ class RegisteredUserController extends Controller
 
 
     public function edit($token){
-        $user = User::where('create_compte', $token)->get();
-        // dd($user);
+        $user = User::with('entreprise')->where('create_compte', $token)->first();//->get();
         return view('auth.register', compact('user'));
     }
 
-    public function update(Request $request, $token){
-        dd($token);
-        dd($request);
+    public function update(Request $request){
         $token = $request->token;
-
         $request->validate([
             'pseudo' => ['required', 'string', 'max:255'],
             'pseudoD' => ['required', 'string', 'max:255'],
             'tk' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
 
+        ],[
+           'tk.unique' => "Le profil trucksbook est déjà utilisé",
+           'tk.required' => "Le profil trucksbook est obligatoire pour l'inscription",
         ]);
-        $user = User::where('create_compte', $token)->get();
-        // $user = User::find('create_compte',  $token);
-        dd($user);
-        // dd(Hash::make($request->password));
-        $password = Hash::make($request->password);
-        $user->password = $password;
-        $user->pseudo = $request->pseudo;
-        $user->pseudoD = $request->pseudoD;
-        $user->tk = $request->tk;
-        // $user->update([
-        //     'pseudo' => $request->pseudo,
-        //     'pseudoD' => $request->pseudoD,
-        //     'tk' => $request->tk,
-        //     // 'pseudoD' => $request->,
-            
-        //     'password' => $password,
-        // ]);
-        // $user->update($request->only('pseudo', 'pseudoD', 'tk', Hash::make($request->password)));
-        // dd($user);
-        $user->save();
-        // dd($request);
+        $user = User::where('create_compte', $token)->first();
 
-        return view('login');
+
+        $user->update([
+            'password' => $password = Hash::make($request->password),
+            'pseudo' => $request->pseudo,
+            'pseudoD' => $request->pseudoD,
+            'tk' => $request->tk,
+            'create_compte' => 0,
+        ]);
+        
+
+        Auth::login($user);
+
+        return view('welcome');
     }
 }
