@@ -13,6 +13,7 @@ class Mission extends Model
         'dVille',
         'dEntreprise',
         'aPays',
+        'dPays',
         'aVille',
         'aEntreprise',
         'distence',
@@ -23,6 +24,18 @@ class Mission extends Model
         'autre',
         'commentaire',
         'user_id',
+        'status',
         'entreprise_id',
     ];
+
+    public function user(){
+        
+        return $this->belongsTo(User::class);
+        
+    }
+    public function entreprise(){
+        
+        return $this->hasMany(Entreprise::class);
+        
+    }
 }

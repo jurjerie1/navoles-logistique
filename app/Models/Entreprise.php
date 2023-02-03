@@ -14,6 +14,7 @@ class Entreprise extends Model
         'name',
         'date_creation',
         'date_fin',
+        'nombre_emplye',
 
     ];
 
