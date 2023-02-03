@@ -19,14 +19,16 @@ return new class extends Migration
             $table->string('pseudo')->nullable();
             $table->string('pseudoD')->nullable();
             $table->string('email')->unique();
+            $table->string('img_profil')->default('pp_de_base.png');
             $table->string('tk')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->integer('token')->default(0);
+            $table->integer('role_app_site')->default(0);
             $table->foreignId('entreprise_id')->constrained()->onDelete('cascade');
             $table->integer('role_et')->default(0);
             $table->rememberToken();
-            $table->uuid('create_compte')->default();
+            $table->uuid('create_compte');
             $table->timestamps();
         });
     }

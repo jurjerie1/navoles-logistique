@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usep;
+use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreUsepRequest;
 use App\Http\Requests\UpdateUsepRequest;
+use App\Models\Mission;
 
 class UsepController extends Controller
 {
@@ -16,7 +19,12 @@ class UsepController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::find(Auth::user()->id);
+
+        $missions = Mission::where('entreprise_id', $user->entreprise->id)->where('status', 5)->orderBy('id', 'DESC')->get();
+
+        
+        return view('home', compact('user', 'missions'));
     }
 
     /**

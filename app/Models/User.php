@@ -20,14 +20,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'pseudo',
-            'pseudoD',
+        'pseudoD',
         'token',
         'email',
-        'password',
         'role',
         'create_compte',
         'role_et',
         'tk',
+        'password',
+        'entreprise_id',
     ];
 
     /**
@@ -38,6 +39,7 @@ class User extends Authenticatable
     protected $hidden = [
         // 'password',
         'remember_token',
+
     ];
 
     /**

@@ -24,7 +24,7 @@
                 <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
                 <div id="emailHelp" class="form-text color-white">Vos indentifiants vous ont était comununiqué par votre entreprise.</div>
             </div>
-            
+
 
             <!-- Password -->
             <div class="mb-3">
@@ -36,9 +36,9 @@
                                 required autocomplete="current-password" />
             </div>
 
-            
 
-            
+
+
             <div>
 
                 <x-primary-button class="d-flex flex-center justify-content-center col-12">
