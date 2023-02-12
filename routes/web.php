@@ -9,6 +9,7 @@ use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PaysController;
+use App\Http\Controllers\VilleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,9 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/missions/{mission}/part2/create', [MissionController::class, 'create_mission1'])->name('missions.part2.create');
 
     Route::get('/missions', [MissionController::class, 'index'])->name('missions.index');
+    Route::get('/missions/{mission}/edit', [MissionController::class, 'edit'])->name('missions.edit');
+    Route::put('/missions/{mission}/update', [MissionController::class, 'update'])->name('missions.update');
+
 
     
 });
@@ -61,14 +65,22 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/admin/villes', [AdminController::class, 'villes'])->name('admin.villes');
     Route::get('/admin/villes/add', [AdminController::class, 'addVilles'])->name('admin.villes.add');
+    Route::get('/admin/villes/{ville}/edit', [VilleController::class, 'edit'])->name('admin.villes.edit');
+    Route::put('/admin/villes/{ville}/update', [VilleController::class, 'update'])->name('admin.villes.update');
     Route::put('/admin/villes/create', [AdminController::class, 'createVilles'])->name('admin.villes.create');
-    Route::get('/admin/villes/{villes}/destroy', [AdminController::class, 'destroyVille'])->name('admin.villes.delete');
+    Route::get('/admin/villes/{ville}/destroy', [AdminController::class, 'destroyVille'])->name('admin.villes.delete');
 
 
     Route::get('/admin/entreprisesIg', [AdminController::class, 'entreprises'])->name('admin.entreprisesIG');
     Route::get('/admin/entreprisesIg/add', [AdminController::class, 'addEntreprisesig'])->name('admin.entreprisesIg.add');
     Route::put('/admin/entreprisesIg/create', [AdminController::class, 'createEntreprisesIg'])->name('admin.entreprisesIG.create');
     Route::get('/admin/entreprisesIg/{entreprise}/destroy', [AdminController::class, 'destroyEntreprisesIg'])->name('admin.entreprisesIG.delete');
+
+    Route::get('/admin/missions', [MissionController::class, 'indexAdmin'])->name('admin.missions');
+    Route::get('/admin/missions/{mission}/verify', [MissionController::class, 'verify'])->name('admin.missions.verify');
+    Route::put('/admin/missions/{mission}/demandeVerifUser', [MissionController::class, 'DemandeModifMission'])->name('admin.missions.demandeVerifUser');
+    Route::get('/admin/missions.{mission}/valide', [MissionController::class, 'valide'])->name('admin.missions.valide');
+
 
 
 

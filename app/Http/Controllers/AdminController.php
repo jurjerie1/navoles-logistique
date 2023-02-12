@@ -33,19 +33,19 @@ class AdminController extends Controller
     public function pays(){
         $pays = Pays::all();
         return view('admin.pays-index', compact('pays'));
-        dd("ok");
+        
     }
     public function villes(){
         $villes = Ville::all();
         return view('admin.villes', compact('villes'));
-        dd("ok");
+        
     }
     public function entreprises(){
         $entreprises = Entreprise_ig::all();
         // $entreprises->load('villes');
         // dd($entreprises);
         return view('admin.entrepriseIg', compact('entreprises'));
-        dd("ok");
+        
     }
 
     public function addVilles(){
@@ -130,7 +130,7 @@ class AdminController extends Controller
         // $pays = 
     }
     public function destroyPays(Pays $pays){
-        dd($pays);
+        // dd($pays);
         $pays->delete();
         session(['type' => 'success']);
         session(['message' => 'Pays suprimé avec succes']);
@@ -147,7 +147,7 @@ class AdminController extends Controller
     }
     public function destroyVille(Ville $ville){
         // $ville = Ville::where('id', $ville->id)->get();
-        dd($ville);
+        // dd($ville);
 
         $ville->delete();
         session(['type' => 'success']);

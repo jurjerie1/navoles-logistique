@@ -20,7 +20,7 @@
                         <td>{{ $ville->name }}</td>
                         <td>{{ $ville->pays->name }}</td>
                         <td>
-                            <a href="edit/ville.php" class="btn btn-primary">Modifier</a>
+                            <a href="{{ route('admin.villes.edit', $ville) }}" class="btn btn-primary">Modifier</a>
                             <a href="{{ route('admin.villes.delete', $ville) }}" class="btn btn-danger"> Supprimer</a></td>
                     </tr>
                     @endforeach

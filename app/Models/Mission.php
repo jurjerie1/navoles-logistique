@@ -26,6 +26,7 @@ class Mission extends Model
         'user_id',
         'status',
         'entreprise_id',
+        'justification',
     ];
 
     public function user(){
