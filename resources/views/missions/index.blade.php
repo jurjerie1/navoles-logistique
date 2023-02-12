@@ -10,15 +10,25 @@
                 </div>
             </div>
             @foreach ($missions_attente as $missionAD)
-                
             <div class="card text-center">
                 <div class="card-header">
-                    Livraison [En attentes de validation]
+                    @if ($missionAD->status === 1)
+                        Livraison [En attentes de validation]
+                    @elseif ($missionAD->status === 2)
+                        Livraison [Une modification est requise]
+                                                    
+                    @endif
+                    <!-- Livraison [En attentes de validation] -->
                 </div>
                 <div class="card-body flex-center-column">
                     <h5 class="card-title">{{ $missionAD->distence }} Km</h5>
-                    <p class="card-text">{{ $missionAD->dVille }} ---> {{ $missionAD->dVille }}</p>
+                    <p class="card-text">{{ $missionAD->dVille }} ({{ $missionAD->dPays }}) ---> {{ $missionAD->dVille }} ({{ $missionAD->aPays }})</p>
                     <!-- <p class="card-text">3h12</p> -->
+                    @if ($missionAD->status === 2)
+                    <a href="{{ route('missions.edit', $missionAD) }}" class="btn btn-warning">Modifier ma mission</a>
+
+                        
+                    @endif
                 </div>
                 <div class="card-footer text-muted">
                     Le {{ $missionAD->created_at }}

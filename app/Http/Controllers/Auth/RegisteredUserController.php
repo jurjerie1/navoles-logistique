@@ -78,6 +78,8 @@ class RegisteredUserController extends Controller
         session(['type' => 'success']);
         session(['message' => 'Employer ajouté avec succes']);
 
+        session(['notification' => 'test']);
+
         return redirect()->route('entreprise..gestion.employe');
     }
 

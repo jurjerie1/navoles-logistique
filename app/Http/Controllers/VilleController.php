@@ -6,6 +6,7 @@ use App\Models\Ville;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreVilleRequest;
 use App\Http\Requests\UpdateVilleRequest;
+use App\Models\Pays;
 
 class VilleController extends Controller
 {
@@ -59,7 +60,12 @@ class VilleController extends Controller
      */
     public function edit(Ville $ville)
     {
-        //
+        $ville = Ville::where('id', $ville->id)->first();
+        $pays = Pays::all();
+        $ville->load('pays');
+        // dd($ville);
+
+        return view('admin.edit.ville', compact('ville', 'pays'));
     }
 
     /**
@@ -71,7 +77,7 @@ class VilleController extends Controller
      */
     public function update(UpdateVilleRequest $request, Ville $ville)
     {
-        //
+        dd($request);
     }
 
     /**

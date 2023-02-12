@@ -43,7 +43,7 @@
     <script>
         toastr.options.closeButton = true;
         {!! 'toastr.'.session('type')."('".session("message")."', {timeOut: 50000000})"  !!}
-        // toastr.info('Are you the 6 fingered man?')
+        toastr.info('Are you the 6 fingered man?')
     </script>
     @php
     Session::forget('type');
